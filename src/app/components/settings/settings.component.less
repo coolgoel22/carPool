@@ -1,0 +1,52 @@
+input[type="text"], select{
+     width: 100%;
+}
+.settings{
+     margin: 0 10px;
+}
+.tabs, .rows{
+     display: inline-block;
+     font-size: 0;
+     &Cont{
+          text-align: center;
+     }
+     &_btn{
+          font-size: 14px;
+          border: 1px solid #ccc;
+          padding: 6px 10px;
+          background-color: orange;
+          border-color: darkorange;
+          color: #333;
+          font-weight: bold;
+          input[type="radio"]{
+               width: 0;
+               height: 0;
+               position: absolute;
+               visibility: hidden;
+               &:checked{
+                    & + .tabs_btn_check{
+                         color: green;
+                    }
+               }
+          }
+          &_check{
+               display: inline-block;
+               padding: 0 3px;
+               border-radius: 15px;
+               margin-left: 5px;
+               border: 1px solid #ccc;
+               color: #cdcdcd;
+               background-color: #efefef;
+          }
+          &:first-child{
+               border-radius: 8px 0 0 8px;
+          }
+          &:last-child{
+               border-radius: 0 8px 8px 0;
+          }
+     }
+}
+
+.rows{
+     display: block;
+}

@@ -1,0 +1,111 @@
+<div class="row register">
+    <div>
+      <h1 class="text-center pb-4 pt-3">
+        <span class="text-primary"><i class="fa fa-lock"></i> Carpool</span> Register
+      </h1>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        <div class="form-group">
+          <input type="text" name="name" [(ngModel)]="register.name" placeholder="Enter Name"
+            class="form-control" required
+            [ngClass]="{'is-invalid': registerName.errors && registerName.touched}"
+            #registerName="ngModel">
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <input type="string" name="mobile" [(ngModel)]="register.mobile"    
+              class="form-control" required placeholder="Mobile No"
+              [ngClass]="{'is-invalid': registerMobile.errors && registerMobile.touched}"
+              #registerMobile="ngModel">
+          </div>
+          <div class="form-group col-6">
+              <input type="number" name="pin" [(ngModel)]="register.pin"    
+                class="form-control" required placeholder="Enter PIN"
+                [ngClass]="{'is-invalid': pin.errors && pin.touched}"
+                #pin="ngModel">
+            </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+              <div class="row fieldGroup">
+                <div class="col-6">
+                  <input type="radio" id="male" name="gender" value="Male" 
+                    [checked]="register.gender!=='Female'" 
+                    [(ngModel)]="register.gender"
+                    (change)="register.gender='Male'"/><label for="male">Male</label>
+                </div>
+                <div>
+                  <input type="radio" id="female" name="gender" value="Female" 
+                    [(ngModel)]="register.gender"
+                    [checked]="register.gender==='Female'" 
+                    (change)="register.gender='Female'"/><label for="female">Female</label>
+                </div>
+              </div>
+          </div>
+          <div class="form-group col-6">
+            <input type="email" name="email" [(ngModel)]="register.email" 
+                placeholder="Enter Email Address"
+                class="form-control" required
+                #registerEmail="ngModel"
+                [ngClass]="{'is-invalid': registerEmail.errors && registerEmail.touched}">
+          </div>
+        </div>
+        <div class="box form-group">
+          <label class="box_label"><b>Address:</b></label>
+          <div class="row form-group">
+            <div class="col-6">
+              <select name="state"  class="form-control"
+                  [(ngModel)]="register.address.state" 
+                  [ngClass]="{'is-invalid': registerState.errors && registerState.touched}"
+                  (change)=onStateChange(register.address.state)
+                  required #registerState="ngModel">
+                <option value="0" disabled selected hidden>Select State</option>
+                <option *ngFor="let state of states" value="{{state}}">{{state}}</option>
+              </select>
+            </div>
+            <div class="col-6" >
+              <select [(ngModel)]="register.address.city" name="city"
+                [ngClass]="{'is-invalid': registerCity.errors && registerCity.touched}"
+                required #registerCity="ngModel" class="form-control">
+                <option value="0" disabled selected hidden>Select a City</option>
+                <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-6">
+              <input type="text" name="locality" placeholder="Add Locality"
+                [(ngModel)]="register.address.locality" required
+                [ngClass]="{'is-invalid':registerLocality.errors && registerLocality.touched}"
+                #registerLocality="ngModel" class="form-control" />
+            </div>
+            <div class="col-6">
+              <input type="text" placeholder="Enter Pincode" name="pincode"
+                required [(ngModel)]="register.address.pincode" class="form-control"
+                [ngClass]="{'is-invalid': registerPincode.errors && registerPincode.touched}"
+                #registerPincode="ngModel" pattern="^[0-9]{6,7}$"/>
+            </div>
+          </div>
+        </div>
+        <div id="recaptcha-container" class="captchaCont" 
+          [ngClass]="{'invalid':recaptchaError}"></div>
+        <div class="invalid-msg" *ngIf="recaptchaError">Please verify captcha</div>
+        <input type="submit" value="Register" class="btn btn-primary btn-block register_btn"
+          id="register-new-user"  
+          [disabled]="!registerForm.form.valid || registerForm.value.city == 0 || registerForm.value.state == 0">
+      </form>
+    </div>
+    <div class="confirmationCode" *ngIf="getConfirmationCode">
+      <div class="cont">
+        <p>Please verify your mobile number. Enter the code you got on sms to continue.</p>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Enter verification code"
+            [(ngModel)]="verificationCode" [ngClass]="{'invalid': inValidVC}">
+            <div class="invalid-msg" *ngIf="inValidVC">Please enter corect verification code</div>
+        </div>
+        <div class="form-group text-center">
+          <input type="submit" class="btn btn-primary" 
+            (click)="afterVerification(verificationCode)">
+        </div>
+      </div>
+    </div>
+  </div>

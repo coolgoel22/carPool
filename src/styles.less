@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+input{
+     &[type='radio']{
+          margin-right: 10px;
+     }
+}
+
+.box{
+    border: 1px solid #aaa;
+    padding: 8px;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 1px 1px #ccc;
+}
+
+select{ 
+    width: 100%;
+}
+
+input[type="text"], input[type="time"], select{
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.textShadow_dark{
+    text-shadow: 0px 0px 3px #000;
+}
+
+.textShadow_light{
+    text-shadow: 1px 1px 3px #ccc;
+}
+
+.invalid{
+    border: 1px solid red !important;
+    &-msg{
+        color: red;
+    }
+}

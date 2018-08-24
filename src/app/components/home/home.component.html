@@ -1,0 +1,24 @@
+<div class="home">
+  <div class="item" *ngFor="let item of items">
+    <h6 class="item_title">{{item.title}} 
+      <span class="item_gender" *ngIf="item.gender">({{item.gender}})</span>
+      <b class="item_type textShadow_dark">{{item.type}}</b>
+    </h6>
+    <div class="item_content">
+      <div class="item_origin">
+        <span class="item_place">From <b>{{item.from}}, {{item.from_place}}</b></span>
+        <span class="item_time">at <b>{{item.from_at}}</b></span>
+      </div>
+      <div class="item_desitnation">
+        <span class="item_place">to <b>{{item.to}}, {{item.to_place}}</b></span>
+      </div>
+      <div class="item_price" *ngIf="item.price">
+        Charges for one side trip: <b>{{item.price | currency: 'INR': 'symbol':'0.0-0'}}</b>
+      </div>
+    </div>
+    <div class="item_contact textShadow_light">
+      <a href="tel:{{item.mobile}}" class="item_contact_call">{{item.mobile}} <i class="fa fa-phone"></i></a>
+      <a href="https://api.whatsapp.com/send?phone={{item.mobile}}" class="item_contact_whatsapp"><i class="fa fa-whatsapp"></i></a> 
+    </div>
+  </div>
+</div>

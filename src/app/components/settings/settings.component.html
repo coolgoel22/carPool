@@ -1,0 +1,89 @@
+<div>
+  <div class="col-md-6">
+    <a routerLink="/dashboard" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard
+    </a>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+<div class="settings">
+  <form #settingsForm="ngForm"  (ngSubmit)="onSubmit(settingsForm)">
+    <div class="form-group">
+      <div class="tabsCont">
+        <div class="row tabs">
+          <label class="tabs_btn">
+            <input type="radio" name="poolerType" 
+              [checked]="settings.poolerType != 'seeker'"
+              [(ngModel)]="settings.poolerType" value="offerer"
+              (change)="settings.poolerType = 'offerer'"/>
+            OFFERER <span class="tabs_btn_check"><i class="fa fa-check"></i></span>
+          </label>
+          <label class="tabs_btn">
+            <input type="radio" name="poolerType" 
+              [checked]="settings.poolerType == 'seeker'"
+              [(ngModel)]="settings.poolerType" value="seeker"
+              (change)="settings.poolerType = 'seeker'"/>
+            SEEKER <span class="tabs_btn_check"><i class="fa fa-check"></i></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group box">
+      <label>I start my journey from</label>
+      <div class="row form-group">
+        <div class="col-6">
+          <select [(ngModel)]="settings.origin" name="origin">
+            <option value="0">Select starting point</option>
+            <option *ngFor="let place of places" value="{{place}}">{{place}}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <input type="text" name="origin_place" [(ngModel)]="settings.origin_place" placeholder="Enter Locality"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> at </label>
+        <input type="time" value="" name="startingTime" [(ngModel)]="settings.startingTime"/>
+      </div>
+    </div>
+    <div class="form-group box">
+      <label>While returning, i start my journey from</label>
+      <div class="row form-group">
+        <div class="col-6">
+          <select [(ngModel)]="settings.destination" name="destination">
+            <option value="0">Select destination point</option>
+            <option *ngFor="let place of places" value="{{place}}">{{place}}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <input type="text" name="destination_place" [(ngModel)]="settings.destination_place" placeholder="Enter Locality"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>at</label>
+        <input type="time" [(ngModel)]="settings.leavingTime" name="leavingTime"/>
+      </div>
+    </div>
+    <div class="form-group">
+        <label>I use to travel</label>
+        <div class="rows">
+          <label class="rows_btn">
+            <input type="radio" class="btn" name="frequency" 
+              [(ngModel)]="settings.frequency" value="daily" />
+            Daily <span class="tabs_btn_check"><i class="fa fa-check"></i></span>
+          </label>
+          <label class="rows_btn">
+            <input type="radio" class="btn" name="frequency" 
+              [(ngModel)]="settings.frequency" value="montofri" />
+            Mon-Fri <span class="tabs_btn_check"><i class="fa fa-check"></i></span>
+          </label>
+          <label class="rows_btn">
+            <input type="radio" class="btn" name="frequency" [(ngModel)]="settings.frequency" value="montosat"/>
+            Mon-Sat <span class="tabs_btn_check"><i class="fa fa-check"></i></span>
+          </label>
+        </div>
+      </div>
+      <input type="submit" value="Submit" class="btn btn-primary btn-block" 
+        [disabled]="!settingsForm.form.valid">
+  </form>
+</div>

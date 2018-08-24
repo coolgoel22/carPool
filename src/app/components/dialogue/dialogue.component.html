@@ -1,0 +1,9 @@
+<div class="dialogue">
+  <h4 class="dialogue_title">{{title}}</h4>
+  <div class="dialogue_body">
+    <p>{{description}}</p>
+  </div>
+  <div class="dialogue_btn_cont">
+    <button *ngFor="let btn of buttons" class="btn btn_{btn.class}"(click)="btn.handler">{{btn.value}}</button>
+  </div>
+</div>

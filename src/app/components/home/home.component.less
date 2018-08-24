@@ -1,0 +1,32 @@
+.item{
+     padding: 0;
+     overflow: hidden;
+     box-shadow: 0 0 3px 2px #999;
+     border-radius: 8px 8px 0 0;
+     &_title{
+          background-color: cornflowerblue;
+          padding: 8px;
+          position: relative;
+     }
+     &_content{
+          margin: 8px;
+     }
+     &_gender{
+          font-size: 0.75em;
+     }
+     &_type{
+          position: absolute;
+          right: 10px;
+          color: #fff;
+     }
+     &_contact{
+          padding: 8px;
+          border-top: 1px solid #aaa;
+          border-top-style: dashed;
+          font-weight: bold;
+          &_call, &_whatsapp{
+               font-size: 1.1em;
+               color: green;
+          }
+     }
+}
